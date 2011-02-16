@@ -3,7 +3,7 @@
 		<% form_tag(categorise_message_path(@message.id), :method => :put, :id => "classify_form") do %>
 
 		<div class="message_text">
-			&ldquo;<%= @message.text %>&rdquo;
+			&ldquo;<%= auto_link(@message.text) %>&rdquo;
 		</div>
 
 		<fieldset class="radio_buttons">
