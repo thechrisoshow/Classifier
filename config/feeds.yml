@@ -24,3 +24,39 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at
+
+-  
+  name: Twitter HTC Desire
+  class: Feed::JsonFeed
+  url: 'http://search.twitter.com/search?format=json&lang=en&rpp=50&q=htc+desire'
+  text_selector: $.text
+  author_selector: $.from_user
+  location_selector: $.location
+  posted_at_selector: $.created_at
+  
+-  
+  name: Twitter HTC Bungee
+  class: Feed::JsonFeed
+  url: 'http://search.twitter.com/search?format=json&lang=en&rpp=50&q=htc+bungee'
+  text_selector: $.text
+  author_selector: $.from_user
+  location_selector: $.location
+  posted_at_selector: $.created_at
+  
+- 
+  name: Twitter HTC Bungee
+  class: Feed::JsonFeed
+  url: 'http://search.twitter.com/search?format=json&lang=en&rpp=50&q=samsung'
+  text_selector: $.text
+  author_selector: $.from_user
+  location_selector: $.location
+  posted_at_selector: $.created_at
+  
+- 
+  name: Twitter iphone
+  class: Feed::JsonFeed
+  url: 'http://search.twitter.com/search?format=json&lang=en&rpp=50&q=iphone'
+  text_selector: $.text
+  author_selector: $.from_user
+  location_selector: $.location
+  posted_at_selector: $.created_at  
