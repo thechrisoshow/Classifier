@@ -19,22 +19,26 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+
+  
+=begin  
   config.gem "treetop"
   config.gem "andand"
   config.gem "stemmer"
   #config.gem "twitter"
   config.gem "json"
   #config.gem "delayed_job"
-  
+=end  
   require 'net/http'
   #require "lib/vector_space/lib/vector_space"
   require "#{RAILS_ROOT}/lib/jsonpath/lib/jsonpath"
   require "#{RAILS_ROOT}/lib/string_extensions"
   require "#{RAILS_ROOT}/lib/enumerable_extensions"
 
+  
   #what a HACK! Mysql::Result implements #each, but doesn't include it. since some of us like our maps and injects and so on, this seems to make sense.
-  require 'mysql' #unless it hasn't been already
-  Mysql::Result.send(:include, Enumerable)
+  # require 'mysql' #unless it hasn't been already
+  # Mysql::Result.send(:include, Enumerable)
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

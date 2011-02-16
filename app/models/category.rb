@@ -4,6 +4,8 @@ class Category < ActiveRecord::Base
   
   has_many :messages, :order => "posted_at desc"
   
+  named_scope :except_neutral, :conditions => "name != 'Neutral'"
+  
   include HasWords
   
   class << self
