@@ -39,6 +39,7 @@ h2 {
 .message_text {
 	font-size: 1.8em;
 	text-align: center;
+	height: 220px;
 }
 
 div.category {
@@ -91,12 +92,6 @@ div.category ul.messages li ul.fixed li {
   display: none;
 }
 
-
-#grab_more_tweets {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 #training_mode {
   position: absolute;

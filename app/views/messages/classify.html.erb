@@ -23,8 +23,10 @@
 		<% end %>
 	<% else %>
 		<h2>There are no unclassified messages left!</h2>
+	  <%= button_to("Grab more tweets", feed_path(:current), :method => :put, :id => "grab_more_tweets") %>
 	<% end %>
-	<%= button_to  "Stop Training", {:controller => :settings, :action => :stop_training}, {:method => :post} %>
+
+	<%# button_to  "Stop Training", {:controller => :settings, :action => :stop_training}, {:method => :post} %>
 <% else %>
 	<h2>We're not in training mode. Click below to enter training mode now.</h2>
 	<%= button_to  "Start Training", {:controller => :settings, :action => :start_training}, {:method => :post} %>
