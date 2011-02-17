@@ -2,11 +2,13 @@
 	<% if @message %>
 		<% form_tag(categorise_message_path(@message.id), :method => :put, :id => "classify_form") do %>
 
+      <em>Message ID: <%= @message.id %></em>
 		<div class="message_text">
 			&ldquo;<%= auto_link(@message.text) %>&rdquo;
 		</div>
 
 		<fieldset class="radio_buttons">
+
 	
 			<% @categories.each do |c| %>
 				<div class="choice">
