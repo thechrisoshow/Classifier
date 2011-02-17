@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
   
   class << self
     def next_unclassified
-      first(:conditions => "category_id is null")
+      message = first(:conditions => "category_id is null AND text not like '%http%'")
     end
     
     def update_all_categories!

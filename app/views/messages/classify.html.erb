@@ -16,6 +16,10 @@
 					<%= radio_button_tag "category_id", c.id, false, :class => 'category' %>
 				</div>
 			<% end %>
+			<div class="choice">
+				<%= label_tag "category_id", "Don't classify" %>
+				<%= radio_button_tag "category_id", "dont_classify", false, :class => 'category' %>
+			</div>
 
 		</fieldset>
 

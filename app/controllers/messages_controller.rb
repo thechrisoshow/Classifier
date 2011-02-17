@@ -21,8 +21,13 @@ class MessagesController < ApplicationController
 
   def categorise
     @message = Message.find(params[:id])
-    @category = Category.find(params[:category_id])
-    @message.categorise!(@category)
+    
+    if params[:category_id] == "dont_classify"
+      @message.destroy
+    else
+      @category = Category.find(params[:category_id])
+      @message.categorise!(@category)      
+    end
     respond_to do |format|
       format.html {redirect_to classify_messages_path}
       format.js { render :js => {:text => Message.random.text} }
