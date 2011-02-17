@@ -1,4 +1,13 @@
 -
+  name: Twitter UK
+  class: Feed::JsonFeed
+  url: 'http://search.twitter.com/search?format=json&lang=en&geocode=54.3165%2C-1.9775%2C500km&rpp=50'
+  text_selector: $.text
+  author_selector: $.from_user
+  location_selector: $.location
+  posted_at_selector: $.created_at
+  
+-
   name: Twitter HTC
   class: Feed::JsonFeed
   url: 'http://search.twitter.com/search?format=json&lang=en&rpp=50&q=HTC'
@@ -6,7 +15,7 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at
-  
+
 -
   name: Twitter Android
   class: Feed::JsonFeed
@@ -24,7 +33,7 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at
-  
+
 -  
   name: Twitter HTC Bungee
   class: Feed::JsonFeed
@@ -33,7 +42,7 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at
-  
+
 - 
   name: Twitter HTC Bungee
   class: Feed::JsonFeed
@@ -42,7 +51,7 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at
-  
+
 - 
   name: Twitter iphone
   class: Feed::JsonFeed
@@ -51,7 +60,7 @@
   author_selector: $.from_user
   location_selector: $.location
   posted_at_selector: $.created_at  
-  
+
 - 
   name: Twitter xperia
   class: Feed::JsonFeed
@@ -59,4 +68,4 @@
   text_selector: $.text
   author_selector: $.from_user
   location_selector: $.location
-  posted_at_selector: $.created_at  
+  posted_at_selector: $.created_at

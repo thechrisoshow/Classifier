@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225180011) do
+ActiveRecord::Schema.define(:version => 20110217104105) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20100225180011) do
     t.string   "posted_at_selector"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "disabled",           :default => false
   end
 
   create_table "messages", :force => true do |t|

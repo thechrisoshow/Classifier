@@ -6,6 +6,8 @@ class Feed < ActiveRecord::Base
   
   abstract_class=true
   
+  named_scope :enabled, :conditions => {:disabled => false}
+  
   class << self
     def import_all_from_yaml
       YAML.load_file("config/feeds.yml").each do |hash|
@@ -16,7 +18,7 @@ class Feed < ActiveRecord::Base
     end
     
     def update_all!
-      all.each {|feed| feed.save_new_messages!}
+      enabled.all.each {|feed| feed.save_new_messages!}
     end
   end
   
