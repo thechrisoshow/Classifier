@@ -1,5 +1,7 @@
 <% if Setting.training? %>
 	<% if @message %>
+	  <h3>Classifier thinks this is: <%= @classifier.classify @message.text %></h3>
+	  
 		<% form_tag(categorise_message_path(@message.id), :method => :put, :id => "classify_form") do %>
 
       <em>Message ID: <%= @message.id %></em>

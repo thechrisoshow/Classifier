@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
   def classify
+    @classifier = CategoryClassifier.new
     @message = Message.next_unclassified
     @categories = Category.all
     
@@ -20,6 +21,7 @@ class MessagesController < ApplicationController
   end
 
   def categorise
+    @classifier = CategoryClassifier.new    
     @message = Message.find(params[:id])
     
     if params[:category_id] == "dont_classify"
