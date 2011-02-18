@@ -1,8 +1,8 @@
 class ExceptionReportController < ApplicationController
   
   def show
-    @messages = Message.categorised_by_human
-    @failed_messages = @messages.select {|m| m.failed_match?}
+    @messages = Message.categorised_by_human.all
+    @failed_messages = Message.failed_messages.all
   end
   
 end

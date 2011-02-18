@@ -10,6 +10,7 @@ class Message < ActiveRecord::Base
   include HasWords
   
   named_scope :categorised_by_human, :conditions => "category_id is not null"
+  named_scope :failed_messages, :conditions => "category_id is not null AND category_id != machine_category_id"
   
   class << self
     def next_unclassified
