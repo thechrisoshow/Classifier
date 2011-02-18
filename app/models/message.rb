@@ -37,9 +37,9 @@ class Message < ActiveRecord::Base
   end
   
   def derived_category
-    @@classifier ||= CategoryClassifier.new
+    @classifier ||= CategoryClassifier.new
     
-    Category.find_by_name @@classifier.classify(text)
+    Category.find_by_name @classifier.classify(text)
     # Category.all.sort {|category_1, category_2| self.word_counts.dot_product(category_2.word_counts) <=>  self.word_counts.dot_product(category_1.word_counts)}.first
   end
   
