@@ -11,3 +11,7 @@ namespace :import do
     Feed.update_all!
   end
 end
+
+task :recategorise_human => :environment do
+  Message.categorised_by_human.all.each {|m| m.machine_categorise! }
+end

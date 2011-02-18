@@ -13,7 +13,6 @@ class MessagesController < ApplicationController
   
   def filter
     if params[:keyword]
-      
       if params[:human_categorized]
         messages = Message.find(:all, :conditions => "text like '%#{params[:keyword]}%' AND text not like '%http%'", :limit => params[:count])
       else
@@ -24,7 +23,7 @@ class MessagesController < ApplicationController
       
       @messages_by_category = messages.group_by(&:machine_category)
       @categories = [Category.find_by_name("Positive"), Category.find_by_name("Negative")]
-    @category_choices = Category.all      
+      @category_choices = Category.all      
     end
   end
 
