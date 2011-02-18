@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
 
       messages.each {|m| m.machine_categorise!}
       
-      @categories = messages.group_by(&:category)
+      @categories = messages.group_by(&:machine_category)
     end
   end
 

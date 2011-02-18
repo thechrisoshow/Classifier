@@ -1,8 +1,8 @@
 class Message < ActiveRecord::Base
   has_many :word_uses
   has_many :words, :through => :word_uses
-  after_create :create_words_for_message
-  after_create :do_categorisation_if_not_training
+  # after_create :create_words_for_message
+  # after_create :do_categorisation_if_not_training
   belongs_to :feed, :polymorphic => true
   belongs_to :category
   belongs_to :machine_category, :class_name => "Category"
