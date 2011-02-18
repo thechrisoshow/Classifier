@@ -10,7 +10,7 @@ They are:
 	<% @failed_messages.each do |message| %>
 		<li>
 		  <%= auto_link(message.text) %>
-		  <em>Should've been <%= @message.category.name %> but is <%= @message.derived_category.name %></em>
+		  <em>Should've been <%= message.category.name %> but is <%= message.derived_category.name %></em>
 		</li>
 	<% end %>
 </ul>
