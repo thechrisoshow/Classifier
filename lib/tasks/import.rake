@@ -17,7 +17,7 @@ task :recategorise_human => :environment do
 end
 
 task :categorise => :environment do
-  filter = args[:filter]
+  filter = "HTC"
   raise "Please provide a filter" unless filter
 
   messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL")
