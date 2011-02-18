@@ -20,7 +20,7 @@ task :categorise => :environment do
   filter = "HTC"
   raise "Please provide a filter" unless filter
 
-  messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL")
+  messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL", :limit => 1000)
   
   while messages.any? do
 
@@ -28,7 +28,7 @@ task :categorise => :environment do
       m.machine_categorise!
       puts "Categorised: #{truncate m.body, 15} as #{m.machine_category.name}"      
     end
-    messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL")
+    messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL", :limit => 1000)
     puts "Categorised another 1000"
   end
     
