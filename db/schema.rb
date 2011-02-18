@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217104105) do
+ActiveRecord::Schema.define(:version => 20110218125731) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20110217104105) do
     t.integer  "feed_id"
     t.string   "feed_type"
     t.integer  "category_id"
+    t.integer  "machine_category_id"
   end
 
   add_index "messages", ["category_id"], :name => "index_messages_on_category_id"

@@ -5,6 +5,7 @@ class Message < ActiveRecord::Base
   after_create :do_categorisation_if_not_training
   belongs_to :feed, :polymorphic => true
   belongs_to :category
+  belongs_to :machine_category, :class_name => "Category"
   
   include HasWords
   
@@ -15,16 +16,20 @@ class Message < ActiveRecord::Base
     
     def update_all_categories!
       all.each do |message|
-        message.categorise!
+        message.machine_categorise!
       end
     end
   end
   
-  def categorise!(new_category=nil)
-    self.category = new_category || derived_category
+  def human_categorise!(new_category)
+    self.category = new_category
+    @@classifier = nil
     self.save!
-    words.each { |word| word.categorise!(new_category)}
-    words.reload
+  end
+  
+  def machine_categorise!
+    self.machine_category = new_category
+    self.save!
   end
   
   def exists?
@@ -32,7 +37,10 @@ class Message < ActiveRecord::Base
   end
   
   def derived_category
-    Category.all.sort {|category_1, category_2| self.word_counts.dot_product(category_2.word_counts) <=>  self.word_counts.dot_product(category_1.word_counts)}.first
+    @@classifier ||= CategoryClassifier.new
+    
+    Category.find_by_name @@classifier.classify(text)
+    # Category.all.sort {|category_1, category_2| self.word_counts.dot_product(category_2.word_counts) <=>  self.word_counts.dot_product(category_1.word_counts)}.first
   end
   
   private
@@ -43,7 +51,7 @@ class Message < ActiveRecord::Base
   
   def do_categorisation_if_not_training
     if !Setting.training?
-      self.categorise!
+      self.machine_categorise!
     end
     return self
   end
