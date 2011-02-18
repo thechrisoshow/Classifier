@@ -19,8 +19,6 @@ class MessagesController < ApplicationController
       else
         messages = Message.find(:all, :conditions => "text like '%#{params[:keyword]}%' AND text not like '%http%' AND category_id is null", :limit => params[:count])
       end
-      
-      
 
       messages.each {|m| m.machine_categorise!}
       
@@ -35,7 +33,7 @@ class MessagesController < ApplicationController
       message = Message.find(message_id)
       category = Category.find(message_params[:category_id])
       message.human_categorise!(category)
-      message.update_attribute(:category, nil)
+      message.update_attribute(:machine_category, nil)
     end
     redirect_to filter_messages_path
   end
