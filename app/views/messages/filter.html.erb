@@ -22,7 +22,7 @@
   				<li>
   				  <%= auto_link(message.text) %>
   				  <% if message.category %>
-  				  <em>Human says: <%= message.category %></em>
+  				  <em>Human says: <%= message.category.name %></em>
   				  <% end %>
   				</li>
   			<% end %>
