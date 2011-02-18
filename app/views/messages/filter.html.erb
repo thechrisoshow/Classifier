@@ -1,4 +1,4 @@
-<h2>Filter and categorize messages</h2>
+<h2>Filter and categorise messages</h2>
 
 <% form_tag(filter_messages_path) do %>
   <p>
@@ -13,11 +13,11 @@
   <%= submit_tag "Filter and classify" %>
   <div>
   
-  <% @categories.each do |category| %>
+  <% @categories.each do |category, messages| %>
   	<div class="<%= category.name.downcase %> category">
-  		<h2><%= category.name %>: <%= @message[:category].count %></h2>
+  		<h2><%= category.name %>: <%= messages.count %></h2>
   		<ul class="messages">
-  			<% @message[:category].each do |message| %>
+  			<% messages.each do |message| %>
   				<li>
   				  <%= auto_link(message.text) %>
   				</li>
