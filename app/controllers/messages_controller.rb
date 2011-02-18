@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
       message.human_categorise!(category)
       message.update_attribute(:category, nil)
     end
-    redirect_to filter_path
+    redirect_to filter_messages_path
   end
 
   def categorise
