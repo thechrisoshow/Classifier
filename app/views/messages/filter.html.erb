@@ -13,19 +13,21 @@
   <%= submit_tag "Filter and classify" %>
   <div>
   
-  <% @categories.each do |category, messages| %>
-    <% if category.name != "Neutral" %>
+  <% @categories.each do |category| %>
+    <% messages = @messages_by_category[category] %>
   	<div class="<%= category.name.downcase %> category">
   		<h2><%= category.name %>: <%= messages.count %></h2>
   		<ul class="messages">
   			<% messages.each do |message| %>
   				<li>
   				  <%= auto_link(message.text) %>
+  				  <% if message.category %>
+  				  <em>Human says: <%= message.category %></em>
+  				  <% end %>
   				</li>
   			<% end %>
   		</ul>
   	</div>
-  	<% end %>
   <% end if @categories.present? %>
   
 <% end %>

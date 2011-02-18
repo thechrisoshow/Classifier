@@ -17,7 +17,8 @@ class MessagesController < ApplicationController
 
       messages.each {|m| m.machine_categorise!}
       
-      @categories = messages.group_by(&:machine_category)
+      @messages_by_category = messages.group_by(&:machine_category)
+      @categories = [Category.find_by_name("Positive"), Category.find_by_name("Negative")]
     end
   end
 
