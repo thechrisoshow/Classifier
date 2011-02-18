@@ -9,6 +9,8 @@ class Message < ActiveRecord::Base
   
   include HasWords
   
+  named_scope :categorised_by_human, :conditions => "category_id is not null"
+  
   class << self
     def next_unclassified
       message = first(:conditions => "category_id is null AND text not like '%http%'")
@@ -21,6 +23,10 @@ class Message < ActiveRecord::Base
     end
   end
   
+  def failed_match?
+    category != (machine_category || derived_category)
+  end
+  
   def human_categorise!(new_category)
     self.category = new_category
     @@classifier = nil
@@ -28,7 +34,7 @@ class Message < ActiveRecord::Base
   end
   
   def machine_categorise!
-    self.machine_category = new_category
+    self.machine_category ||= derived_category
     self.save!
   end
   
@@ -39,7 +45,7 @@ class Message < ActiveRecord::Base
   def derived_category
     @classifier ||= CategoryClassifier.new
     
-    Category.find_by_name @classifier.classify(text)
+    @derived_category ||= Category.find_by_name @classifier.classify(text)
     # Category.all.sort {|category_1, category_2| self.word_counts.dot_product(category_2.word_counts) <=>  self.word_counts.dot_product(category_1.word_counts)}.first
   end
   

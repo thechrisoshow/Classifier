@@ -1,0 +1,17 @@
+<h2>Exception report</h2>
+
+<% if @failed_messages.none? %>
+<p>No failed messages!</p>
+<% else %>
+Out of <%= @messages.count  %> human categorised messages <%= @failed_messages.count %> failed to match.
+
+They are:
+<ul class="messages">
+	<% @failed_messages.each do |message| %>
+		<li>
+		  <%= auto_link(message.text) %>
+		  <em>Should've been <%= @message.category.name %> but is <%= @message.derived_category.name %></em>
+		</li>
+	<% end %>
+</ul>
+<% end %>

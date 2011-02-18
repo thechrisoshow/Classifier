@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages, :collection => {:classify => :get, :bulk_categorize => :put}, :member => {:categorise => :put}
   map.resources :settings, :collection => {[:stop_training, :start_training] => :post}
   map.resources :feeds
+  map.resource :exception_report, :controller => "ExceptionReport"
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
