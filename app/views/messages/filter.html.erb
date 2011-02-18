@@ -9,6 +9,9 @@
     Count: <%= text_field_tag :count, (params[:count] || 100) %>
   </p>
   
+  <p>
+    Include human categorised: <%= check_box_tag :human_categorized %>
+  </p>
 
   <%= submit_tag "Filter and classify" %>
   <div>
