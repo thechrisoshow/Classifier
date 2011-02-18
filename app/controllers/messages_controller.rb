@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       message = Message.find(message_id)
       category = Category.find(message_params[:category_id])
       message.human_categorise!(category)
-      message.update_attribute(:human_category, nil)
+      message.update_attribute(:category, nil)
     end
     redirect_to filter_path
   end
