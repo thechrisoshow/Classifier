@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   def classify
     @classifier = CategoryClassifier.new
     @message = Message.next_unclassified
-    @categories = Category.all
+    @categories = Category.all    
     
     respond_to do |format|
       format.html
@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
       
       @messages_by_category = messages.group_by(&:machine_category)
       @categories = [Category.find_by_name("Positive"), Category.find_by_name("Negative")]
+    @category_choices = Category.all      
     end
   end
 
@@ -26,9 +27,10 @@ class MessagesController < ApplicationController
     params[:message].each do |message_id, message_params|
       message = Message.find(message_id)
       category = Category.find(message_params[:category_id])
-      message.human_categorise!(category)      
+      message.human_categorise!(category)
+      message.update_attribute(:human_category, nil)
     end
-    redirect_to home_path
+    redirect_to filter_path
   end
 
   def categorise

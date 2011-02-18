@@ -12,9 +12,14 @@
 
   <%= submit_tag "Filter and classify" %>
   <div>
+<% end %>
+  
+  <% form_tag(bulk_categorize_messages_path(:all), :method => :put) do %>
+  <%= submit_tag "Update", :id => "update_messages" %>
+  
   
   <% @categories.each do |category| %>
-    <% messages = @messages_by_category[category] %>
+    <% messages = @messages_by_category[category] || [] %>
   	<div class="<%= category.name.downcase %> category">
   		<h2><%= category.name %>: <%= messages.count %></h2>
   		<ul class="messages">
@@ -24,6 +29,15 @@
   				  <% if message.category %>
   				  <em>Human says: <%= message.category.name %></em>
   				  <% end %>
+  				  <ul>
+  				  <% @category_choices.each do |c| %>
+              <li>
+      					<%= label_tag "category_id", c.name %>
+      					<%= radio_button_tag "message[#{message.id}]category_id", c.id, false, :class => 'category' %>
+              </li>
+      			<% end %>
+      			</ul>
+  				  
   				</li>
   			<% end %>
   		</ul>

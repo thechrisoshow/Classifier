@@ -1,6 +1,4 @@
 <%= button_to "Go into training mode", classify_messages_path, :method => :get, :id => "training_mode" %>
-<% form_tag(bulk_categorize_messages_path(:all), :method => :put) do %>
-<%= submit_tag "Update", :id => "update_messages" %>
 <% @categories.each do |category| %>
 	<div class="<%= category.name.downcase %> category">
 		<h2><%= category.name %>: <%= category.messages.count %></h2>
@@ -8,17 +6,8 @@
 			<% category.messages.each do |message| %>
 				<li>
 				  <%= auto_link(message.text) %>
-				  <ul>
-				  <% @category_choices.each do |c| %>
-            <li>
-    					<%= label_tag "category_id", c.name %>
-    					<%= radio_button_tag "message[#{message.id}]category_id", c.id, false, :class => 'category' %>
-            </li>
-    			<% end %>
-    			</ul>
 				</li>
 			<% end %>
 		</ul>
 	</div>
-<% end %>
 <% end %>
