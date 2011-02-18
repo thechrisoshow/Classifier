@@ -1,0 +1,29 @@
+<h2>Filter and categorize messages</h2>
+
+<% form_tag(filter_messages_path) do %>
+  <p>
+    Keyword: <%= text_field_tag :keyword, params[:keyword] %>
+  </p>
+
+  <p>
+    Count: <%= text_field_tag :count, (params[:count] || 100) %>
+  </p>
+  
+
+  <%= submit_tag "Filter and classify" %>
+  <div>
+  
+  <% @categories.each do |category| %>
+  	<div class="<%= category.name.downcase %> category">
+  		<h2><%= category.name %>: <%= @message[:category].count %></h2>
+  		<ul class="messages">
+  			<% @message[:category].each do |message| %>
+  				<li>
+  				  <%= auto_link(message.text) %>
+  				</li>
+  			<% end %>
+  		</ul>
+  	</div>
+  <% end if @categories.present? %>
+  
+<% end %>

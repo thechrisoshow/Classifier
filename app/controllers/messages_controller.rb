@@ -10,6 +10,16 @@ class MessagesController < ApplicationController
       format.js { render :js => {:text => @message.text}}
     end
   end
+  
+  def filter
+    if params[:keyword]
+      @messages = Message.find(:all, :conditions => "text like '%#{params[:keyword]}%'", :limit => params[:count])
+
+      @messages.each {|m| m.machine_categorize!}
+      
+      @categories = @messages.group_by(&:category)
+    end
+  end
 
   def bulk_categorize
     params[:message].each do |message_id, message_params|

@@ -9,8 +9,9 @@ They are:
 <ul class="messages">
 	<% @failed_messages.each do |message| %>
 		<li>
+		  (ID: <%= message.id %>)
 		  <%= auto_link(message.text) %>
-		  <em>Should've been <%= message.category.name %> but is <%= message.derived_category.name %></em>
+		  <em>Human: <%= message.category.name %> Machine: <%= message.derived_category.name %></em>
 		</li>
 	<% end %>
 </ul>
