@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
   
   def filter
     if params[:keyword]
-      @messages = Message.find(:all, :conditions => "text like '%#{params[:keyword]}%'", :limit => params[:count])
+      @messages = Message.find(:all, :conditions => "text like '%#{params[:keyword]}%' AND text not like '%http%'", :limit => params[:count])
 
       @messages.each {|m| m.machine_categorize!}
       
