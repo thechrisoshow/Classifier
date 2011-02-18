@@ -25,7 +25,7 @@ task :categorise => :environment do
   while messages.any? do
 
     messages.each do |m| 
-      message.machine_categorise!
+      m.machine_categorise!
     end
     messages = Message.find(:all, :conditions => "text like '%#{filter}%' AND text not like '%http%' AND machine_category_id IS NULL")
     puts "Categorised another 1000"
