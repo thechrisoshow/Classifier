@@ -6,7 +6,7 @@ class Feed < ActiveRecord::Base
   
   abstract_class=true
   
-  named_scope :enabled, :conditions => {:disabled => false}
+  named_scope :enabled, :conditions => "disabled != 1"
   
   class << self
     def import_all_from_yaml
